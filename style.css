@@ -1,0 +1,580 @@
+/* =========================================
+   1. Reset & Base
+   ========================================= */
+   html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%; /* per fullscreen video */
+  }
+  
+  * {
+    box-sizing: inherit;
+  }
+  
+  body, h1, h2, h3, h4, h5, h6, button, input, label, select {
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+  }
+  
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #1a1a1a;
+    color: #fff;
+    overflow-x: hidden;
+  }
+  
+  /* =========================================
+     2. Header
+     ========================================= */
+  .header-container {
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    height: 150px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  #header-logo {
+    max-width: 250px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .header-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.8rem;
+    color: #fff;
+    letter-spacing: 2px;
+  }
+  
+  /* =========================================
+     3. Layout principale
+     ========================================= */
+  .layout-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+  
+  /* =========================================
+     4. Colonna sinistra: Ricerca unificata e Filtri
+     ========================================= */
+  .search-container {
+    flex: 0.35;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  /* Unified Search */
+  .unified-search {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  #searchType {
+    padding: 0.9rem 0.5rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 50px 0 0 50px;
+    text-align: center;
+  }
+  
+  #searchInput {
+    flex: 1;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 0 50px 50px 0;
+    background-color: white;
+    color: #000;
+    text-align: left;
+  }
+  
+  #searchInput:focus,
+  #searchType:focus {
+    outline: none;
+    border-color: #8B0000;
+    box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+  }
+  
+  /* Suggerimenti */
+  .suggestions-list {
+    list-style-type: none;
+    padding-left: 0;
+    display: none;
+    background: #262626;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 1001;
+    position: relative;
+  }
+  
+  .suggestions-list li {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    cursor: pointer;
+  }
+  
+  .suggestions-list li:hover {
+    background: #333;
+  }
+  
+  .suggestions-list img {
+    width: 55px;
+    height: auto;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  
+  /* Filtri */
+  .filter-section {
+    background: #262626;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  }
+  
+  .filter-section h4 {
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 1rem;
+  }
+  
+  /* Layout "chip" per i servizi */
+  .services-filter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .services-filter label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .services-filter input[type="checkbox"] {
+    display: none; /* nascondi la checkbox */
+  }
+  
+  .service-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #f1f1f1;
+    color: #000;
+    border-radius: 50px;
+    padding: 0.5rem 0.8rem;
+    transition: background 0.3s, transform 0.2s;
+    border: 2px solid transparent;
+  }
+  
+  .service-chip img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .services-filter input[type="checkbox"]:checked + .service-chip {
+    background: #dcdcdc;
+    transform: scale(1.05);
+    border-color: #8B0000;
+  }
+  
+  /* Only Streaming */
+  .only-streaming-row {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  
+  .only-streaming-label {
+    font-size: 0.95rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+  }
+  
+  #onlyStreamingCheckbox {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+  
+  /* Pulsanti filtri */
+  .filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  #applyFilterBtn,
+  #worldViewBtn {
+    flex: 1;
+    background: #8B0000;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  #applyFilterBtn:hover,
+  #worldViewBtn:hover {
+    background: #B22222;
+    transform: scale(1.05);
+  }
+  
+  /* Info / Risultati */
+  .info-section {
+    background: #262626;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Bandiera paese */
+  .country-flag {
+    width: 30px;
+    height: auto;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .world-flag {
+    width: 30px;  /* o 20px, come preferisci */
+    height: auto;
+  }
+  
+  
+  /* Risultati per i film del regista */
+  .country-movie-list {
+    margin-top: 1rem;
+  }
+  
+  .country-movie-item {
+    background: #333;
+    margin: 0.5rem 0;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+  }
+  
+  .country-movie-item:hover {
+    background: #444;
+  }
+  
+  .country-movie-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .country-movie-title h5 {
+    margin: 0;
+    font-size: 1rem;
+    color: #fff;
+  }
+  
+  .country-movie-toggle {
+    font-size: 1.2rem;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  /* Accordion provider per singolo film */
+  .movie-provider-list {
+    display: none;
+    margin-top: 0.5rem;
+  }
+  
+  .movie-provider-list p {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+    color: #ddd;
+  }
+  
+  .provider-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 100%;
+  }
+  
+  .provider-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+  }
+  
+  .provider-logo {
+    width: 45px;
+    height: auto;
+    border-radius: 6px;
+  }
+  
+  /* =========================================
+     5. Colonna destra: Mappa
+     ========================================= */
+  .map-container {
+    flex: 0.65;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+    position: relative;
+  }
+  
+  #mapContainer {
+    width: 100%;
+    height: auto;
+    min-height: 500px;
+  }
+  
+  .map-nav {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+  }
+  
+  .map-nav-btn {
+    background: #8B0000;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 4px;
+    transition: background 0.3s, transform 0.2s;
+  }
+  
+  .map-nav-btn:hover {
+    background: #B22222;
+    transform: scale(1.05);
+  }
+  
+  /* =========================================
+     6. Intro Video (a tutto schermo)
+     ========================================= */
+  #intro-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background: black;
+    z-index: 1000;
+    transition: opacity 1s ease-in-out;
+  }
+  
+  #intro-video {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .intro-overlay {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2;
+  }
+  
+  #intro-logo {
+    max-width: 300px;
+    height: auto;
+    filter: brightness(0) invert(1);
+    margin-bottom: 2rem;
+  }
+  
+  #enter-btn {
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
+    background: #8B0000;
+    border: none;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    z-index: 10;
+  }
+  
+  #enter-btn:hover {
+    background: #B22222;
+    transform: scale(1.1);
+  }
+  
+  /* =========================================
+     7. Tooltip
+     ========================================= */
+  .tooltip {
+    position: absolute;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 1000;
+  }
+  
+  /* =========================================
+     8. Footer
+     ========================================= */
+  .legal {
+    font-size: 0.75rem;
+    text-align: center;
+    margin-top: 2rem;
+    padding: 1rem 0;
+    color: white;
+  }
+  
+  .legal a {
+    color: white;
+    text-decoration: underline;
+  }
+  
+  /* =========================================
+     9. Responsività
+     ========================================= */
+  @media (max-width: 992px) {
+    .layout-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .search-container {
+      width: 100%;
+      max-width: 600px;
+      margin-bottom: 2rem;
+    }
+    .map-container {
+      width: 100%;
+    }
+    #mapContainer {
+      min-height: 400px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    #mapContainer {
+      min-height: 300px;
+    }
+  }
+  
+  @media (max-width: 600px) {
+    .header-container {
+      padding: 0.5rem 1rem;
+      height: auto;
+      flex-direction: column;
+      justify-content: center;
+    }
+    #header-logo {
+      max-width: 200px;
+    }
+    .header-title {
+      font-size: 1.2rem;
+      text-align: center;
+    }
+    #intro-logo {
+      max-width: 200px;
+    }
+    #enter-btn {
+      font-size: 1.5rem;
+      padding: 0.8rem 1.5rem;
+      max-width: 90%;
+      width: auto;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    .layout-container {
+      flex-direction: column;
+      padding: 1rem;
+    }
+    .search-container {
+      width: 100%;
+      max-width: 100%;
+      padding: 0.5rem;
+    }
+    .map-container {
+      width: 100%;
+      overflow: hidden;
+      box-sizing: border-box;
+      margin-top: 1rem;
+    }
+    #searchInput, #searchType {
+      font-size: 0.9rem;
+      padding: 0.7rem 1rem;
+    }
+    .unified-search {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .unified-search select, .unified-search input {
+      border-radius: 50px;
+    }
+    .services-filter {
+      justify-content: center;
+    }
+    .service-chip img {
+      width: 20px;
+      height: 20px;
+    }
+
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

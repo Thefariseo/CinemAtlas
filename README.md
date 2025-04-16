@@ -1,4 +1,4 @@
-# CinemAtlas cinematlas.it
+# CinemAtlas 
 CinemAtlas is a modern, interactive web platform designed for users to explore film availability across the globe. By integrating data from The Movie Database (TMDb) API, the platform presents an interactive world map that highlights countries where a selected movie or a director’s films are available across various streaming and transactional services.
 # Overview
 CinemAtlas combines a unified search interface with advanced filtering tools to deliver a seamless user experience on both desktop and mobile devices. Users can search either by movie title or by director name using the single search bar with a simple dropdown selector. The platform then displays suggestions in real time using TMDb’s API.
